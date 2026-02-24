@@ -146,10 +146,37 @@ model Referral {
   createdAt     DateTime @default(now())
 }
 
-enum Plan          { FREE PERFORMANCE ENTERPRISE }
-enum TeamRole      { ADMIN MANAGER VIEWER }
-enum Processor     { XENDIT MIDTRANS STRIPE PAYMONGO IPAY88 TWOC2P }
-enum DisputeStatus { DETECTED EVIDENCE_COLLECTING DRAFT REVIEW_NEEDED SUBMITTED WON LOST EXPIRED }
+enum Plan {
+  FREE
+  PERFORMANCE
+  ENTERPRISE
+}
+
+enum TeamRole {
+  ADMIN
+  MANAGER
+  VIEWER
+}
+
+enum Processor {
+  XENDIT
+  MIDTRANS
+  STRIPE
+  PAYMONGO
+  IPAY88
+  TWOC2P
+}
+
+enum DisputeStatus {
+  DETECTED
+  EVIDENCE_COLLECTING
+  DRAFT
+  REVIEW_NEEDED
+  SUBMITTED
+  WON
+  LOST
+  EXPIRED
+}
 enum ReasonCategory {
   PRODUCT_NOT_RECEIVED
   ITEM_NOT_AS_DESCRIBED
