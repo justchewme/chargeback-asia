@@ -25,7 +25,8 @@ export const generateLetterFunction = inngest.createFunction(
           return translateLetter(enLetter.content, language)
         }
       }
-      return generateDisputeLetter(dispute)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      return generateDisputeLetter(dispute as any)
     })
 
     const savedLetter = await step.run('save', async () => {

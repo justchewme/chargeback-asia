@@ -64,7 +64,8 @@ export const processChargeback = inngest.createFunction(
 
     // Step 2: Collect evidence
     const evidenceItems = await step.run('collect-evidence', async () => {
-      return collectEvidence(dispute)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      return collectEvidence(dispute as any)
     })
 
     // Step 3: Save evidence
@@ -84,7 +85,8 @@ export const processChargeback = inngest.createFunction(
 
     // Step 5: Generate English letter
     const englishLetter = await step.run('generate-letter-en', async () => {
-      return generateDisputeLetter(disputeWithEvidence)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      return generateDisputeLetter(disputeWithEvidence as any)
     })
 
     // Step 6: Save English letter
@@ -159,7 +161,7 @@ export const processChargeback = inngest.createFunction(
           amount: dispute.amount,
           processor: dispute.processor,
           reasonCategory: dispute.reasonCategory,
-          evidenceDeadline: dispute.evidenceDeadline,
+          evidenceDeadline: dispute.evidenceDeadline as unknown as Date,
           autoSubmit: merchant.autoSubmit,
         })
       }
