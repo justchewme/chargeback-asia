@@ -39,7 +39,7 @@ export function TableRowSkeleton({ cols = 6 }: { cols?: number }) {
     <tr>
       {Array.from({ length: cols }).map((_, i) => (
         <td key={i} className="px-4 py-3.5">
-          <Skeleton className="h-4 w-full" style={{ maxWidth: `${60 + i * 10}px` } as React.CSSProperties} />
+          <Skeleton className="h-4 w-full" style={{ maxWidth: `${60 + i * 10}px` }} />
         </td>
       ))}
     </tr>
