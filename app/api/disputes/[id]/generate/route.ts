@@ -7,7 +7,7 @@ export async function POST(
   req: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  const { userId } = auth()
+  const { userId } = await auth()
   if (!userId) return new Response('Unauthorized', { status: 401 })
 
   const merchant = await prisma.merchant.findUnique({ where: { clerkUserId: userId } })

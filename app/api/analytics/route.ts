@@ -3,7 +3,7 @@ import { auth } from '@clerk/nextjs/server'
 import { prisma } from '@/lib/prisma'
 
 export async function GET(req: NextRequest) {
-  const { userId } = auth()
+  const { userId } = await auth()
   if (!userId) return new Response('Unauthorized', { status: 401 })
 
   const merchant = await prisma.merchant.findUnique({ where: { clerkUserId: userId } })

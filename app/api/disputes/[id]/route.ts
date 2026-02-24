@@ -6,7 +6,7 @@ export async function GET(
   req: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  const { userId } = auth()
+  const { userId } = await auth()
   if (!userId) return new Response('Unauthorized', { status: 401 })
 
   const merchant = await prisma.merchant.findUnique({ where: { clerkUserId: userId } })
@@ -30,7 +30,7 @@ export async function PATCH(
   req: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  const { userId } = auth()
+  const { userId } = await auth()
   if (!userId) return new Response('Unauthorized', { status: 401 })
 
   const merchant = await prisma.merchant.findUnique({ where: { clerkUserId: userId } })

@@ -2,7 +2,7 @@
 
 import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip,
-  ResponsiveContainer, defs, linearGradient, stop
+  ResponsiveContainer,
 } from 'recharts'
 
 const data = [
