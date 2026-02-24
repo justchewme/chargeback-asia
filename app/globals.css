@@ -1,0 +1,223 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* ─── BACKGROUNDS ───────────────────────────────────── */
+  --bg-base:       #05090F;
+  --bg-primary:    #080E18;
+  --bg-secondary:  #0B1422;
+  --bg-card:       #0F1C2E;
+  --bg-card-hover: #132336;
+  --bg-elevated:   #172A40;
+  --bg-input:      #0D1927;
+
+  /* ─── BORDERS ───────────────────────────────────────── */
+  --border:        #1A2E47;
+  --border-subtle: #111E30;
+  --border-strong: #234060;
+  --border-focus:  rgba(0, 230, 118, 0.5);
+
+  /* ─── BRAND GREEN ───────────────────────────────────── */
+  --green-200:     #A7FFCF;
+  --green-300:     #69FFAA;
+  --green-400:     #33FF8A;
+  --green-500:     #00E676;
+  --green-600:     #00C853;
+  --green-700:     #00A040;
+  --green-glow-sm: rgba(0, 230, 118, 0.10);
+  --green-glow:    rgba(0, 230, 118, 0.18);
+  --green-glow-lg: rgba(0, 230, 118, 0.28);
+
+  /* ─── TEXT ──────────────────────────────────────────── */
+  --text-primary:  #EDF4FF;
+  --text-secondary:#7A9FC0;
+  --text-muted:    #3D5A78;
+  --text-accent:   #00E676;
+  --text-inverse:  #060B12;
+
+  /* ─── STATUS ────────────────────────────────────────── */
+  --won:           #00E676;
+  --won-bg:        rgba(0, 230, 118, 0.10);
+  --won-border:    rgba(0, 230, 118, 0.25);
+  --lost:          #FF4D72;
+  --lost-bg:       rgba(255, 77, 114, 0.10);
+  --lost-border:   rgba(255, 77, 114, 0.25);
+  --pending:       #FFAA00;
+  --pending-bg:    rgba(255, 170, 0, 0.10);
+  --pending-border:rgba(255, 170, 0, 0.25);
+  --draft:         #4D9EFF;
+  --draft-bg:      rgba(77, 158, 255, 0.10);
+  --draft-border:  rgba(77, 158, 255, 0.25);
+  --submitted:     #B47EFF;
+  --submitted-bg:  rgba(180, 126, 255, 0.10);
+  --submitted-border: rgba(180, 126, 255, 0.25);
+  --expired:       #5A7A95;
+  --expired-bg:    rgba(90, 122, 149, 0.10);
+  --expired-border:rgba(90, 122, 149, 0.25);
+
+  /* ─── CHART PALETTE ─────────────────────────────────── */
+  --chart-green:   #00E676;
+  --chart-blue:    #4D9EFF;
+  --chart-purple:  #B47EFF;
+  --chart-amber:   #FFAA00;
+  --chart-red:     #FF6B8A;
+  --chart-teal:    #00D4C8;
+
+  /* ─── SHADOWS ───────────────────────────────────────── */
+  --shadow-sm:    0 1px 3px rgba(0,0,0,0.4);
+  --shadow-md:    0 4px 16px rgba(0,0,0,0.5);
+  --shadow-card:  0 2px 12px rgba(0,0,0,0.35);
+  --shadow-green: 0 0 20px rgba(0,230,118,0.20);
+  --shadow-green-lg: 0 0 40px rgba(0,230,118,0.25);
+
+  /* ─── RADIUS ────────────────────────────────────────── */
+  --radius-sm:  6px;
+  --radius-md:  10px;
+  --radius-lg:  14px;
+  --radius-xl:  20px;
+  --radius-full: 9999px;
+  --radius: 10px;
+
+  /* ─── SPACING SCALE ─────────────────────────────────── */
+  --space-1: 4px;   --space-2: 8px;   --space-3: 12px;
+  --space-4: 16px;  --space-5: 20px;  --space-6: 24px;
+  --space-8: 32px;  --space-10: 40px; --space-12: 48px;
+  --space-16: 64px; --space-20: 80px;
+
+  /* ─── TRANSITIONS ───────────────────────────────────── */
+  --transition-fast:   all 0.15s ease;
+  --transition-base:   all 0.22s ease;
+  --transition-slow:   all 0.35s ease;
+
+  /* ─── shadcn/ui compat vars ─────────────────────────── */
+  --background: 213 84% 5%;
+  --foreground: 213 100% 97%;
+  --card: 213 50% 12%;
+  --card-foreground: 213 100% 97%;
+  --popover: 213 60% 15%;
+  --popover-foreground: 213 100% 97%;
+  --primary: 151 100% 45%;
+  --primary-foreground: 213 100% 4%;
+  --secondary: 213 40% 18%;
+  --secondary-foreground: 213 100% 97%;
+  --muted: 213 40% 15%;
+  --muted-foreground: 213 30% 50%;
+  --accent: 213 40% 18%;
+  --accent-foreground: 213 100% 97%;
+  --destructive: 347 100% 61%;
+  --destructive-foreground: 213 100% 97%;
+  --border: 213 50% 20%;
+  --input: 213 55% 13%;
+  --ring: 151 100% 45%;
+}
+
+* {
+  border-color: var(--border);
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body), 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Hero gradient mesh */
+.hero-bg {
+  background: var(--bg-primary);
+  position: relative;
+  overflow: hidden;
+}
+.hero-bg::before {
+  content: '';
+  position: absolute;
+  top: -200px; right: -100px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(0,230,118,0.12) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  bottom: -150px; left: -100px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(77,158,255,0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Selection */
+::selection {
+  background: rgba(0, 230, 118, 0.2);
+  color: var(--text-primary);
+}
+
+/* Font display helper */
+.font-display {
+  font-family: var(--font-display), 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Mono amounts */
+.amount {
+  font-family: var(--font-mono), 'JetBrains Mono', monospace;
+  font-feature-settings: 'tnum';
+}
+
+/* Green text gradient */
+.text-gradient-green {
+  background: linear-gradient(135deg, #00E676 0%, #4D9EFF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Pulsing dot */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+.pulse-dot {
+  animation: pulse-dot 1.5s ease-in-out infinite;
+}
+
+/* Green glow button */
+.btn-green-glow {
+  box-shadow: 0 0 20px rgba(0, 230, 118, 0.3);
+  transition: box-shadow 0.2s ease;
+}
+.btn-green-glow:hover {
+  box-shadow: 0 0 30px rgba(0, 230, 118, 0.45);
+}

@@ -1,0 +1,175 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Merchant {
+  id              String    @id @default(cuid())
+  clerkUserId     String    @unique
+  email           String    @unique
+  businessName    String
+  country         String    @default("SG")
+  website         String?
+  timezone        String    @default("Asia/Singapore")
+  plan            Plan      @default(FREE)
+  autoSubmit      Boolean   @default(true)
+  onboardingDone  Boolean   @default(false)
+  referralCode    String    @unique @default(cuid())
+  referredBy      String?
+  notifyEmail     Boolean   @default(true)
+  notifyWhatsapp  Boolean   @default(false)
+  whatsappNumber  String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  connections     ProcessorConnection[]
+  disputes        Dispute[]
+  recoveries      Recovery[]
+  notifications   Notification[]
+  teamMembers     TeamMember[]
+  referrals       Referral[]   @relation("ReferrerMerchant")
+}
+
+model TeamMember {
+  id         String    @id @default(cuid())
+  merchantId String
+  merchant   Merchant  @relation(fields: [merchantId], references: [id])
+  email      String
+  role       TeamRole  @default(VIEWER)
+  invitedAt  DateTime  @default(now())
+  acceptedAt DateTime?
+}
+
+model ProcessorConnection {
+  id            String    @id @default(cuid())
+  merchantId    String
+  merchant      Merchant  @relation(fields: [merchantId], references: [id])
+  processor     Processor
+  apiKey        String
+  webhookSecret String?
+  webhookId     String?
+  isActive      Boolean   @default(true)
+  connectedAt   DateTime  @default(now())
+  lastSyncAt    DateTime?
+  disputes      Dispute[]
+  @@unique([merchantId, processor])
+}
+
+model Dispute {
+  id                 String         @id @default(cuid())
+  merchantId         String
+  merchant           Merchant       @relation(fields: [merchantId], references: [id])
+  connectionId       String
+  connection         ProcessorConnection @relation(fields: [connectionId], references: [id])
+  processorDisputeId String
+  processor          Processor
+  country            String
+  amount             Float
+  currency           String         @default("USD")
+  reasonCode         String
+  reasonCategory     ReasonCategory
+  reasonDescription  String?
+  customerEmail      String?
+  customerName       String?
+  transactionDate    DateTime
+  chargebackDate     DateTime
+  evidenceDeadline   DateTime
+  status             DisputeStatus  @default(DETECTED)
+  riskScore          Int?
+  notes              String?
+  createdAt          DateTime       @default(now())
+  updatedAt          DateTime       @updatedAt
+  evidence    Evidence[]
+  letters     DisputeLetter[]
+  recovery    Recovery?
+}
+
+model Evidence {
+  id          String       @id @default(cuid())
+  disputeId   String
+  dispute     Dispute      @relation(fields: [disputeId], references: [id])
+  type        EvidenceType
+  content     String       @db.Text
+  source      String
+  collectedAt DateTime     @default(now())
+}
+
+model DisputeLetter {
+  id          String   @id @default(cuid())
+  disputeId   String
+  dispute     Dispute  @relation(fields: [disputeId], references: [id])
+  language    String   @default("en")
+  content     String   @db.Text
+  version     Int      @default(1)
+  claudeModel String   @default("claude-sonnet-4-6")
+  submittedAt DateTime?
+  outcome     String?
+  createdAt   DateTime @default(now())
+}
+
+model Recovery {
+  id              String   @id @default(cuid())
+  disputeId       String   @unique
+  dispute         Dispute  @relation(fields: [disputeId], references: [id])
+  merchantId      String
+  merchant        Merchant @relation(fields: [merchantId], references: [id])
+  recoveredAmount Float
+  ourFee          Float
+  currency        String
+  paidAt          DateTime?
+  createdAt       DateTime @default(now())
+}
+
+model Notification {
+  id         String   @id @default(cuid())
+  merchantId String
+  merchant   Merchant @relation(fields: [merchantId], references: [id])
+  type       String
+  title      String
+  body       String
+  read       Boolean  @default(false)
+  data       Json?
+  createdAt  DateTime @default(now())
+}
+
+model Referral {
+  id            String   @id @default(cuid())
+  referrerId    String
+  referrer      Merchant @relation("ReferrerMerchant", fields: [referrerId], references: [id])
+  referredEmail String
+  convertedAt   DateTime?
+  earningsTotal Float    @default(0)
+  createdAt     DateTime @default(now())
+}
+
+enum Plan          { FREE PERFORMANCE ENTERPRISE }
+enum TeamRole      { ADMIN MANAGER VIEWER }
+enum Processor     { XENDIT MIDTRANS STRIPE PAYMONGO IPAY88 TWOC2P }
+enum DisputeStatus { DETECTED EVIDENCE_COLLECTING DRAFT REVIEW_NEEDED SUBMITTED WON LOST EXPIRED }
+enum ReasonCategory {
+  PRODUCT_NOT_RECEIVED
+  ITEM_NOT_AS_DESCRIBED
+  UNAUTHORIZED
+  DUPLICATE
+  SUBSCRIPTION_CANCELLED
+  CREDIT_NOT_PROCESSED
+  FRIENDLY_FRAUD
+  GENERAL
+}
+enum EvidenceType {
+  TRACKING_INFO
+  DELIVERY_CONFIRMATION
+  CUSTOMER_COMMUNICATION
+  IP_ADDRESS
+  DEVICE_FINGERPRINT
+  TRANSACTION_LOG
+  PRODUCT_DESCRIPTION
+  REFUND_POLICY
+  PURCHASE_HISTORY
+  PHOTO
+  INVOICE
+}
