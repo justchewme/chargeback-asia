@@ -5,8 +5,9 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import {
   LayoutDashboard, AlertCircle, Plug, BarChart3,
-  Users, Gift, Settings, CreditCard, HelpCircle,
-  ChevronLeft, ChevronRight,
+  Users, Gift, Settings, CreditCard,
+  ChevronLeft, ChevronRight, Shield, Languages,
+  Upload, Key, Trophy, MessageCircle,
 } from 'lucide-react'
 import { Logo } from '@/components/shared/Logo'
 import { cn } from '@/lib/styles'
@@ -17,13 +18,19 @@ const navItems = [
   { href: '/disputes',      label: 'Disputes',      icon: AlertCircle },
   { href: '/integrations',  label: 'Integrations',  icon: Plug },
   { href: '/analytics',     label: 'Analytics',     icon: BarChart3 },
+  { href: '/prevention',    label: 'Prevention AI', icon: Shield },
+  { href: '/letters',       label: 'Letters',       icon: Languages },
+  { href: '/benchmarks',    label: 'Benchmarks',    icon: Trophy },
+  { href: '/import',        label: 'Import',        icon: Upload },
+  { href: '/api-access',    label: 'API Access',    icon: Key },
   { href: '/team',          label: 'Team',          icon: Users },
   { href: '/referrals',     label: 'Referrals',     icon: Gift },
 ]
 
 const bottomItems = [
-  { href: '/settings',      label: 'Settings',      icon: Settings },
-  { href: '/settings/billing', label: 'Billing',   icon: CreditCard },
+  { href: '/settings/whatsapp', label: 'WhatsApp',  icon: MessageCircle },
+  { href: '/settings',          label: 'Settings',  icon: Settings },
+  { href: '/settings/billing',  label: 'Billing',   icon: CreditCard },
 ]
 
 interface NavItemProps {

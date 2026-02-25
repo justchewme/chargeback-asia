@@ -82,7 +82,10 @@ export default function DisputesPage() {
             {filtered.length} disputes found
           </p>
         </div>
-        <button className={btnSecondary}>
+        <button
+          className={btnSecondary}
+          onClick={() => window.location.href = '/api/export?format=csv'}
+        >
           <Download size={14} /> Export CSV
         </button>
       </div>
