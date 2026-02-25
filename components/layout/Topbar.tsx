@@ -1,20 +1,37 @@
 'use client'
 
-import { UserButton } from '@clerk/nextjs'
 import { NotificationBell } from '@/components/shared/NotificationBell'
-import { Search } from 'lucide-react'
+import { Search, User } from 'lucide-react'
 import { usePathname } from 'next/navigation'
+
+// Conditionally import Clerk components only when a valid key is present
+const hasValidClerkKey = (() => {
+  const key = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY ?? ''
+  return key.startsWith('pk_') && key.length > 30
+})()
+
+let UserButton: React.ComponentType<{ appearance?: object }> | null = null
+if (hasValidClerkKey) {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  UserButton = require('@clerk/nextjs').UserButton
+}
 
 const pageTitles: Record<string, string> = {
   '/dashboard': 'Dashboard',
   '/disputes': 'Disputes',
   '/integrations': 'Integrations',
   '/analytics': 'Analytics',
+  '/prevention': 'Prevention AI',
+  '/letters': 'Letters',
+  '/benchmarks': 'Benchmarks',
+  '/import': 'Import',
+  '/api-access': 'API Access',
   '/team': 'Team',
   '/referrals': 'Referrals',
   '/settings': 'Settings',
   '/settings/billing': 'Billing',
   '/settings/notifications': 'Notifications',
+  '/settings/whatsapp': 'WhatsApp',
   '/onboarding': 'Onboarding',
 }
 
@@ -64,13 +81,17 @@ export function Topbar() {
 
         <NotificationBell />
 
-        <UserButton
-          appearance={{
-            elements: {
-              avatarBox: 'w-8 h-8',
-            },
-          }}
-        />
+        {UserButton ? (
+          <UserButton appearance={{ elements: { avatarBox: 'w-8 h-8' } }} />
+        ) : (
+          // Dev placeholder avatar
+          <div
+            className="w-8 h-8 rounded-full flex items-center justify-center"
+            style={{ background: 'var(--green-500)' }}
+          >
+            <User size={14} style={{ color: 'var(--text-inverse)' }} />
+          </div>
+        )}
       </div>
     </header>
   )
