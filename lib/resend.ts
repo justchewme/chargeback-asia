@@ -1,8 +1,16 @@
 import { Resend } from 'resend'
 
-export const resend = new Resend(process.env.RESEND_API_KEY)
-
 export const FROM_EMAIL = process.env.FROM_EMAIL || 'noreply@chargebackasia.com'
+
+// Lazy singleton — instantiated on first use, not at module load time
+// This prevents build failures when RESEND_API_KEY is not yet set in the environment
+let _resend: Resend | null = null
+function getResend(): Resend {
+  if (!_resend) {
+    _resend = new Resend(process.env.RESEND_API_KEY || 'placeholder')
+  }
+  return _resend
+}
 
 export async function sendDisputeDetectedEmail(
   to: string,
@@ -20,7 +28,7 @@ export async function sendDisputeDetectedEmail(
     day: '2-digit', month: 'long', year: 'numeric',
   })
 
-  await resend.emails.send({
+  await getResend().emails.send({
     from: FROM_EMAIL,
     to,
     subject: `⚡ New chargeback detected — ${dispute.currency} ${dispute.amount.toLocaleString()}`,
@@ -70,7 +78,7 @@ export async function sendWonEmail(
   to: string,
   data: { disputeId: string; amount: number; currency: string; fee: number }
 ) {
-  await resend.emails.send({
+  await getResend().emails.send({
     from: FROM_EMAIL,
     to,
     subject: `🎉 Won! ${data.currency} ${data.amount.toLocaleString()} recovered`,
