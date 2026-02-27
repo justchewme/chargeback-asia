@@ -16,7 +16,7 @@ export const cardActive =
 
 export const btnPrimary =
   'bg-[var(--green-500)] text-[var(--text-inverse)] font-semibold rounded-[10px] px-5 py-2.5 ' +
-  'hover:bg-[var(--green-400)] shadow-[0_0_20px_rgba(0,230,118,0.3)] ' +
+  'hover:bg-[var(--green-400)] shadow-[0_0_24px_rgba(0,212,140,0.32)] ' +
   'active:bg-[var(--green-600)] transition-all duration-150 ' +
   'focus-visible:ring-2 ring-[var(--green-500)]/50 ring-offset-2 ring-offset-[var(--bg-primary)] ' +
   'inline-flex items-center gap-2 text-sm'

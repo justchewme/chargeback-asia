@@ -6,72 +6,78 @@
 
 :root {
   /* ─── BACKGROUNDS ───────────────────────────────────── */
-  --bg-base:       #05090F;
-  --bg-primary:    #080E18;
-  --bg-secondary:  #0B1422;
-  --bg-card:       #0F1C2E;
-  --bg-card-hover: #132336;
-  --bg-elevated:   #172A40;
-  --bg-input:      #0D1927;
+  /* 2026: slightly warmer zinc-navy blend, deeper contrast */
+  --bg-base:       #030711;
+  --bg-primary:    #060C18;
+  --bg-secondary:  #091020;
+  --bg-card:       #0C1828;
+  --bg-card-hover: #101E30;
+  --bg-elevated:   #14243A;
+  --bg-input:      #0A1522;
+  --bg-glass:      rgba(12, 24, 40, 0.72);
 
   /* ─── BORDERS ───────────────────────────────────────── */
-  --border:        #1A2E47;
-  --border-subtle: #111E30;
-  --border-strong: #234060;
-  --border-focus:  rgba(0, 230, 118, 0.5);
+  /* 2026: brighter, clearer hierarchy */
+  --border:        #1C3250;
+  --border-subtle: #101C2E;
+  --border-strong: #274A6E;
+  --border-focus:  rgba(0, 210, 140, 0.55);
 
-  /* ─── BRAND GREEN ───────────────────────────────────── */
-  --green-200:     #A7FFCF;
-  --green-300:     #69FFAA;
-  --green-400:     #33FF8A;
-  --green-500:     #00E676;
-  --green-600:     #00C853;
-  --green-700:     #00A040;
-  --green-glow-sm: rgba(0, 230, 118, 0.10);
-  --green-glow:    rgba(0, 230, 118, 0.18);
-  --green-glow-lg: rgba(0, 230, 118, 0.28);
+  /* ─── BRAND GREEN (Mint-Teal — more premium, less "terminal") ── */
+  /* Shifted from pure electric #00E676 → refined #00D48C mint-teal */
+  --green-200:     #9DFFD8;
+  --green-300:     #5FFFC0;
+  --green-400:     #1AFFA4;
+  --green-500:     #00D48C;
+  --green-600:     #00B578;
+  --green-700:     #008F5E;
+  --green-glow-sm: rgba(0, 212, 140, 0.10);
+  --green-glow:    rgba(0, 212, 140, 0.18);
+  --green-glow-lg: rgba(0, 212, 140, 0.30);
 
   /* ─── TEXT ──────────────────────────────────────────── */
-  --text-primary:  #EDF4FF;
-  --text-secondary:#7A9FC0;
-  --text-muted:    #3D5A78;
-  --text-accent:   #00E676;
-  --text-inverse:  #060B12;
+  /* 2026: crisper white with a hint of cool */
+  --text-primary:  #F0F6FF;
+  --text-secondary:#7A9EBE;
+  --text-muted:    #3C5470;
+  --text-accent:   #00D48C;
+  --text-inverse:  #05090F;
 
   /* ─── STATUS ────────────────────────────────────────── */
-  --won:           #00E676;
-  --won-bg:        rgba(0, 230, 118, 0.10);
-  --won-border:    rgba(0, 230, 118, 0.25);
-  --lost:          #FF4D72;
-  --lost-bg:       rgba(255, 77, 114, 0.10);
-  --lost-border:   rgba(255, 77, 114, 0.25);
-  --pending:       #FFAA00;
-  --pending-bg:    rgba(255, 170, 0, 0.10);
-  --pending-border:rgba(255, 170, 0, 0.25);
-  --draft:         #4D9EFF;
-  --draft-bg:      rgba(77, 158, 255, 0.10);
-  --draft-border:  rgba(77, 158, 255, 0.25);
-  --submitted:     #B47EFF;
-  --submitted-bg:  rgba(180, 126, 255, 0.10);
-  --submitted-border: rgba(180, 126, 255, 0.25);
-  --expired:       #5A7A95;
-  --expired-bg:    rgba(90, 122, 149, 0.10);
-  --expired-border:rgba(90, 122, 149, 0.25);
+  --won:           #00D48C;
+  --won-bg:        rgba(0, 212, 140, 0.10);
+  --won-border:    rgba(0, 212, 140, 0.28);
+  --lost:          #FF4F74;
+  --lost-bg:       rgba(255, 79, 116, 0.10);
+  --lost-border:   rgba(255, 79, 116, 0.28);
+  --pending:       #F59E0B;
+  --pending-bg:    rgba(245, 158, 11, 0.10);
+  --pending-border:rgba(245, 158, 11, 0.28);
+  --draft:         #3B82F6;
+  --draft-bg:      rgba(59, 130, 246, 0.10);
+  --draft-border:  rgba(59, 130, 246, 0.28);
+  --submitted:     #A78BFA;
+  --submitted-bg:  rgba(167, 139, 250, 0.10);
+  --submitted-border: rgba(167, 139, 250, 0.28);
+  --expired:       #52697F;
+  --expired-bg:    rgba(82, 105, 127, 0.10);
+  --expired-border:rgba(82, 105, 127, 0.28);
 
   /* ─── CHART PALETTE ─────────────────────────────────── */
-  --chart-green:   #00E676;
-  --chart-blue:    #4D9EFF;
-  --chart-purple:  #B47EFF;
-  --chart-amber:   #FFAA00;
+  --chart-green:   #00D48C;
+  --chart-blue:    #3B82F6;
+  --chart-purple:  #A78BFA;
+  --chart-amber:   #F59E0B;
   --chart-red:     #FF6B8A;
-  --chart-teal:    #00D4C8;
+  --chart-teal:    #06B6D4;
 
   /* ─── SHADOWS ───────────────────────────────────────── */
-  --shadow-sm:    0 1px 3px rgba(0,0,0,0.4);
-  --shadow-md:    0 4px 16px rgba(0,0,0,0.5);
-  --shadow-card:  0 2px 12px rgba(0,0,0,0.35);
-  --shadow-green: 0 0 20px rgba(0,230,118,0.20);
-  --shadow-green-lg: 0 0 40px rgba(0,230,118,0.25);
+  /* 2026: deeper, richer shadows */
+  --shadow-sm:    0 1px 4px rgba(0,0,0,0.5);
+  --shadow-md:    0 4px 20px rgba(0,0,0,0.6);
+  --shadow-card:  0 2px 16px rgba(0,0,0,0.45);
+  --shadow-green: 0 0 24px rgba(0,212,140,0.22);
+  --shadow-green-lg: 0 0 48px rgba(0,212,140,0.28);
 
   /* ─── RADIUS ────────────────────────────────────────── */
   --radius-sm:  6px;
@@ -93,25 +99,25 @@
   --transition-slow:   all 0.35s ease;
 
   /* ─── shadcn/ui compat vars ─────────────────────────── */
-  --background: 213 84% 5%;
-  --foreground: 213 100% 97%;
-  --card: 213 50% 12%;
-  --card-foreground: 213 100% 97%;
-  --popover: 213 60% 15%;
-  --popover-foreground: 213 100% 97%;
-  --primary: 151 100% 45%;
-  --primary-foreground: 213 100% 4%;
-  --secondary: 213 40% 18%;
-  --secondary-foreground: 213 100% 97%;
-  --muted: 213 40% 15%;
-  --muted-foreground: 213 30% 50%;
-  --accent: 213 40% 18%;
-  --accent-foreground: 213 100% 97%;
-  --destructive: 347 100% 61%;
-  --destructive-foreground: 213 100% 97%;
-  --border: 213 50% 20%;
-  --input: 213 55% 13%;
-  --ring: 151 100% 45%;
+  --background: 217 85% 4%;
+  --foreground: 214 100% 97%;
+  --card: 216 55% 11%;
+  --card-foreground: 214 100% 97%;
+  --popover: 216 60% 14%;
+  --popover-foreground: 214 100% 97%;
+  --primary: 161 100% 42%;
+  --primary-foreground: 217 100% 4%;
+  --secondary: 216 40% 17%;
+  --secondary-foreground: 214 100% 97%;
+  --muted: 216 40% 14%;
+  --muted-foreground: 216 28% 48%;
+  --accent: 216 40% 17%;
+  --accent-foreground: 214 100% 97%;
+  --destructive: 344 100% 60%;
+  --destructive-foreground: 214 100% 97%;
+  --border: 216 55% 21%;
+  --input: 217 60% 12%;
+  --ring: 161 100% 42%;
 }
 
 * {
@@ -158,17 +164,17 @@ body {
   content: '';
   position: absolute;
   top: -200px; right: -100px;
-  width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(0,230,118,0.12) 0%, transparent 70%);
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(0,212,140,0.11) 0%, transparent 65%);
   border-radius: 50%;
   pointer-events: none;
 }
 .hero-bg::after {
   content: '';
   position: absolute;
-  bottom: -150px; left: -100px;
+  bottom: -150px; left: -80px;
   width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(77,158,255,0.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(59,130,246,0.07) 0%, transparent 65%);
   border-radius: 50%;
   pointer-events: none;
 }
@@ -179,9 +185,17 @@ body {
   background-size: 48px 48px;
 }
 
+/* Glassmorphism card */
+.glass-card {
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
 /* Selection */
 ::selection {
-  background: rgba(0, 230, 118, 0.2);
+  background: rgba(0, 212, 140, 0.22);
   color: var(--text-primary);
 }
 
@@ -196,12 +210,28 @@ body {
   font-feature-settings: 'tnum';
 }
 
-/* Green text gradient */
+/* Brand text gradient */
 .text-gradient-green {
-  background: linear-gradient(135deg, #00E676 0%, #4D9EFF 100%);
+  background: linear-gradient(135deg, #00D48C 0%, #3B82F6 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Shimmer loading effect */
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--bg-card) 0%,
+    var(--bg-elevated) 50%,
+    var(--bg-card) 100%
+  );
+  background-size: 800px 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
 }
 
 /* Pulsing dot */
@@ -215,9 +245,9 @@ body {
 
 /* Green glow button */
 .btn-green-glow {
-  box-shadow: 0 0 20px rgba(0, 230, 118, 0.3);
+  box-shadow: 0 0 24px rgba(0, 212, 140, 0.32);
   transition: box-shadow 0.2s ease;
 }
 .btn-green-glow:hover {
-  box-shadow: 0 0 30px rgba(0, 230, 118, 0.45);
+  box-shadow: 0 0 36px rgba(0, 212, 140, 0.48);
 }
